@@ -6,10 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
@@ -19,8 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
+import com.example.jetpackcomposehazetopbar.ui.theme.Blur
 import com.example.jetpackcomposehazetopbar.ui.theme.JetpackComposeHazeTopBarTheme
 import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeStyle
+import dev.chrisbanes.haze.HazeTint
 import dev.chrisbanes.haze.haze
 import dev.chrisbanes.haze.hazeChild
 
@@ -43,28 +49,54 @@ class MainActivity : ComponentActivity() {
                         .nestedScroll(scrollBehavior.nestedScrollConnection),
                     containerColor = Color.Transparent,
                     topBar = {
-                        TopBar(
-                            modifier = Modifier.hazeChild(hazeState),
-                            scrollBehavior = scrollBehavior
-                        )
+                        Column {
+                            TopBar(
+                                modifier = Modifier.hazeChild(hazeState),
+                                scrollBehavior = scrollBehavior
+                            )
 
-                        Pager(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .hazeChild(state = hazeState)
-                        )
+                            Pager(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .hazeChild(state = hazeState)
+                            )
+                        }
+
                     },
                 )
                 { innerPadding ->
-                   HomeScreen(modifier = Modifier.padding(innerPadding))
-
+                   HomeScreen(
+                       modifier = Modifier
+                           .fillMaxSize()
+                           .padding(innerPadding),
+                       hazeState = hazeState
+                   )
                 }
             }
         }
     }
 
     @Composable
-    fun HomeScreen(modifier: Modifier = Modifier) {
+    fun HomeScreen(
+        modifier: Modifier = Modifier,
+        hazeState: HazeState
+    ) {
+        Box(
+            modifier = modifier
+                .background(MaterialTheme.colorScheme.background)
+        ) {
+            CarList(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .hazeChild(
+                        state = hazeState,
+                        style = HazeStyle(
+                            blurRadius = 13.dp,
+                            tint = HazeTint(Blur)
+                        )
+                    )
+            )
+        }
 
     }
 }
