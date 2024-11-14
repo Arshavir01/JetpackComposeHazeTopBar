@@ -28,13 +28,13 @@ import com.example.jetpackcomposehazetopbar.ui.theme.Secondary
 
 @Composable
 fun Pager(modifier: Modifier = Modifier) {
-    Column {
+    Column(modifier = Modifier.background(color = colorResource(id = R.color.white))) {
         Spacer(modifier = modifier.height(10.dp))
         Text(
             text = "Luxurious\nRental Cars",
             fontSize = 25.sp,
             fontWeight = FontWeight.SemiBold,
-            color = Color.White,
+            color = Color.Black,
             lineHeight = 40.sp,
             modifier = Modifier.padding(horizontal = 22.dp)
         )
@@ -46,7 +46,7 @@ fun Pager(modifier: Modifier = Modifier) {
                 text = "Luxurious",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
-                color = Color.White,
+                color = Color.Black,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.weight(1f)
             )
@@ -59,7 +59,7 @@ fun Pager(modifier: Modifier = Modifier) {
                     text = "VIP Cars",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
-                    color = Color.White,
+                    color = Color.Black,
                 )
 
                 Spacer(modifier = Modifier.width(10.dp))
@@ -86,7 +86,7 @@ fun Pager(modifier: Modifier = Modifier) {
             HorizontalDivider(
                 modifier = Modifier.weight(1f),
                 thickness = 2.dp,
-                color = colorResource(id = R.color.white)
+                color = colorResource(id = R.color.black)
             )
 
             HorizontalDivider(

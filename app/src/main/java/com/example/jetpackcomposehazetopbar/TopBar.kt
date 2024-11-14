@@ -20,7 +20,6 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,8 +34,8 @@ fun TopBar(
         scrollBehavior = scrollBehavior,
         modifier = modifier,
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Transparent,
-            scrolledContainerColor = Color.Transparent
+            containerColor = Color.White,
+            scrolledContainerColor = Color.White
         ),
         title = {
             Row(
@@ -45,7 +44,7 @@ fun TopBar(
                     .height(60.dp)
                     .border(
                         width = 1.dp,
-                        color = Color.White,
+                        color = Color.Black,
                         shape = RoundedCornerShape(100.dp)
                     )
                     .padding(horizontal = 16.dp),
@@ -54,7 +53,7 @@ fun TopBar(
                 Icon(
                     imageVector = Icons.Rounded.Search,
                     contentDescription = null,
-                    tint = Color.White,
+                    tint = Color.Black,
                     modifier = Modifier.size(28.dp)
                 )
 
@@ -63,14 +62,14 @@ fun TopBar(
                 Text(
                     text = "Trending new cars",
                     fontSize = 18.sp,
-                    color = Color.White,
+                    color = Color.Black,
                     modifier = Modifier.weight(1f)
                 )
 
                 Icon(
                     imageVector = Icons.Rounded.Mic,
                     contentDescription = null,
-                    tint = Color.White,
+                    tint = Color.Black,
                     modifier = Modifier.size(28.dp)
                 )
 
