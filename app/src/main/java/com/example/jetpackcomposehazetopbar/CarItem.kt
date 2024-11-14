@@ -17,6 +17,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowForward
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -58,20 +62,13 @@ fun CarItem(
             Column {
                 CarInfo(car = car)
                 Spacer(modifier = Modifier.height(20.dp))
-                Rating(car = car)
-
+                Rating(car = car, Modifier.padding(start = 16.dp))
+                Spacer(modifier = Modifier.weight(1f))
+                BuyButton(car = car)
             }
 
         }
     }
-
-}
-
-@Composable
-fun Rating(
-    car: Car,
-    modifier: Modifier = Modifier
-) {
 
 }
 
@@ -131,6 +128,101 @@ fun CarInfo(
     }
 
 }
+
+@Composable
+private fun Rating(
+    car: Car,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box {
+                Image(
+                    painter = painterResource(id = car.recommenders[0]),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(30.dp)
+                        .clip(shape = CircleShape)
+                        .border(
+                            width = 1.dp,
+                            color = colorResource(id = R.color.black),
+                            shape = CircleShape
+                        )
+                )
+
+                Image(
+                    painter = painterResource(id = car.recommenders[1]),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(start = 24.dp)
+                        .size(30.dp)
+                        .clip(shape = CircleShape)
+                        .border(
+                            width = 1.dp,
+                            color = colorResource(id = R.color.black),
+                            shape = CircleShape
+                        )
+                )
+
+                Image(
+                    painter = painterResource(id = car.recommenders[2]),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(start = 48.dp)
+                        .size(30.dp)
+                        .clip(shape = CircleShape)
+                        .border(
+                            width = 1.dp,
+                            color = colorResource(id = R.color.black),
+                            shape = CircleShape
+                        )
+                )
+            }
+            Spacer(modifier = Modifier.width(6.dp))
+            Text(
+                text = car.recommendationRate.toString(),
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 22.sp
+            )
+        }
+        Text(
+            text = "${car.recommendation}% Recommended",
+            fontSize = 11.sp
+        )
+    }
+}
+
+@Composable
+private fun BuyButton(car: Car){
+    Box(modifier = Modifier
+        .padding(start = 4.dp, bottom = 4.dp)
+        .clip(RoundedCornerShape(40.dp))
+        .background(color = colorResource(id = R.color.dark_grey).copy(alpha = 0.7f))
+    ) {
+        Row(
+            modifier = Modifier.padding(start = 6.dp, end = 6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)) {
+                Text(text = "1 day rental", fontSize = 12.sp, color = colorResource(id = R.color.white))
+                Text(text = "${car.price}.00 $", fontSize = 22.sp, color = colorResource(id = R.color.white))
+            }
+
+            Icon(
+                imageVector = Icons.AutoMirrored.Rounded.ArrowForward,
+                contentDescription = null,
+                tint = colorResource(
+                id = R.color.white
+            ))
+        }
+
+
+    }
+
+}
+
+
+
 
 @Preview
 @Composable
