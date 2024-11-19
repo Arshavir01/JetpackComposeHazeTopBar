@@ -13,12 +13,13 @@ import com.ahmed_apps.rental_cars_ui.luxuriousCars
 
 @Composable
 fun CarList (
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    paddingValues: PaddingValues
 ) {
     LazyColumn (
         modifier = modifier,
         contentPadding = PaddingValues(
-            top = 10.dp,
+            top = paddingValues.calculateTopPadding() + 22.dp,
             bottom = 90.dp
         )
     ) {

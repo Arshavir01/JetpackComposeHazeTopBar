@@ -12,4 +12,4 @@ val Pink40 = Color(0xFF7D5260)
 
 val Primary = Color(0xFF6650a4)
 val Secondary = Color(0xFFEFB8C8)
-val Blur = Color(0xFF8D7857).copy(alpha = 0.5f)
+val Blur = Color(0xFF8D7857).copy(alpha = 0.8f)
